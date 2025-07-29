@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WaySave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2DC6FF;
+      --accent-color: #FFC400;
+      --bg-color: #FF4E42;
+      --text-color: #1d1d1d;
+      --light: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Fredoka One', sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      padding: 1.5rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--light);
+    }
+
+    .selector {
+      margin: 1rem 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--light);
+    }
+
+    select, .checkboxes {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: var(--light);
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: none;
+    }
+
+    .checkboxes label {
+      background: var(--light);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+
+    .activities {
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 15px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .card h3 {
+      color: var(--bg-color);
+      font-size: 1.4rem;
+    }
+
+    .card span.sponsored {
+      background: var(--accent-color);
+      color: #000;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .map {
+      width: 100%;
+      height: 200px;
+      margin: 2rem 0;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .assistant::after {
+      content: '👾';
+      font-size: 2rem;
+      animation: blink 5s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes blink {
+      0%, 90%, 100% { opacity: 1; }
+      95% { opacity: 0; }
+    }
+
+    .banner-ad {
+      background: var(--accent-color);
+      padding: 0.7rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      color: #000;
+      margin: 1.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>WaySave</h1>
+  </header>
+
+  <div class="banner-ad">🚨 Sponsored: Try the new “BounceZone” Trampoline Park in Queens!</div>
+
+  <div class="selector">
+    <label for="age">Select Your Age Group</label>
+    <select id="age">
+      <option value="teen">13-17</option>
+      <option value="youngadult">18-25</option>
+      <option value="adult">26-40</option>
+      <option value="senior">40+</option>
+    </select>
+  </div>
+
+  <div class="selector">
+    <label>Select Your Interests</label>
+    <div class="checkboxes">
+      <label><input type="checkbox"> Music</label>
+      <label><input type="checkbox"> Food</label>
+      <label><input type="checkbox"> Art</label>
+      <label><input type="checkbox"> Nature</label>
+      <label><input type="checkbox"> Fitness</label>
+      <label><input type="checkbox"> Museums</label>
+      <label><input type="checkbox"> Shopping</label>
+      <label><input type="checkbox"> Sports</label>
+      <label><input type="checkbox"> Tech</label>
+      <label><input type="checkbox"> Games</label>
+      <!-- Add more as needed -->
+    </div>
+  </div>
+
+  <div class="map">
+    <iframe src="https://maps.google.com/maps?q=brooklyn&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+  </div>
+
+  <div class="activities">
+    <div class="card">
+      <h3>Brooklyn Flea Market</h3>
+      <p>Explore vintage finds, crafts, and delicious food in DUMBO.</p>
+    </div>
+    <div class="card">
+      <h3>Central Park Rowboats</h3>
+      <span class="sponsored">Sponsored</span>
+      <p>Rent a rowboat and chill in the sun. Perfect group hang.</p>
+    </div>
+    <div class="card">
+      <h3>Queens Food Crawl</h3>
+      <p>Discover the best cultural eats in Jackson Heights.</p>
+    </div>
+  </div>
+
+  <div class="assistant" title="Hi, I'm Savie! Ask me anything."></div>
+
+</body>
+</html>
