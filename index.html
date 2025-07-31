@@ -4,70 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WaySave</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="waysave-icon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <!-- Splash Screen -->
   <div id="splash-screen">
-    <h1>WaySave: Fun Your Way<span class="dots">...</span></h1>
+    <div class="splash-content">
+      <h1 class="splash-title">WaySave</h1>
+      <p class="splash-tagline">fun your way<span class="dots">...</span></p>
+    </div>
   </div>
 
-  <!-- Main App Content -->
-  <div id="app" style="display:none">
-    <header>
-      <h1>WaySave</h1>
-      <div class="live-counter">👥 <span id="userCount">0</span> users exploring NYC</div>
-    </header>
+  <!-- Live User Counter -->
+  <div id="live-counter">Live Users: <span id="user-count">3000000</span></div>
 
-    <div class="banner-ad">🚨 Sponsored: Try the new “BounceZone” Trampoline Park in Queens!</div>
+  <!-- Survey -->
+  <div id="survey">
+    <h2>Let's Get to Know You!</h2>
+    <form id="survey-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="number" placeholder="Your Age" required />
+      <select id="borough" required>
+        <option disabled selected>Select Your Borough</option>
+        <option>Brooklyn</option>
+        <option>Bronx</option>
+        <option>Queens</option>
+        <option>Manhattan</option>
+        <option>Staten Island</option>
+      </select>
+      <input type="number" placeholder="What's your budget?" required />
+      <button type="submit">Start Exploring!</button>
+    </form>
+  </div>
 
-    <div class="selector">
-      <label for="age">Select Your Age Group</label>
-      <select id="age">
-        <option value="teen">13-17</option>
-        <option value="youngadult">18-25</option>
-        <option value="adult">26-40</option>
-        <option value="senior">40+</option>
+  <!-- Main App -->
+  <div id="app" style="display: none;">
+    <!-- Filters -->
+    <div id="filters">
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <!-- Filled dynamically -->
+      </select>
+      <select id="boroughFilter">
+        <option value="all">All Boroughs</option>
+        <option>Brooklyn</option>
+        <option>Bronx</option>
+        <option>Queens</option>
+        <option>Manhattan</option>
+        <option>Staten Island</option>
       </select>
     </div>
 
-    <div class="selector">
-      <label>Select Your Interests</label>
-      <div class="checkboxes">
-        <label><input type="checkbox"> Music</label>
-        <label><input type="checkbox"> Food</label>
-        <label><input type="checkbox"> Art</label>
-        <label><input type="checkbox"> Nature</label>
-        <label><input type="checkbox"> Fitness</label>
-        <label><input type="checkbox"> Museums</label>
-        <label><input type="checkbox"> Shopping</label>
-        <label><input type="checkbox"> Sports</label>
-        <label><input type="checkbox"> Tech</label>
-        <label><input type="checkbox"> Games</label>
-      </div>
+    <!-- Activities List -->
+    <div id="activities"></div>
+
+    <!-- Premium Ad (As an activity card) -->
+    <div class="activity-card premium">
+      <h3>WaySave Premium</h3>
+      <p>$9.99/month • No ads, hidden events, bonus Savie features</p>
+      <button onclick="alert('Thanks for upgrading!')">Subscribe Now</button>
     </div>
 
-    <div class="map">
-      <iframe src="https://maps.google.com/maps?q=brooklyn&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+    <!-- Weather Widget -->
+    <div id="weather-widget">Weather: ☀️ Loading...</div>
+
+    <!-- Live Events -->
+    <div id="live-events">
+      <h2>Live NYC Events 🎉</h2>
+      <ul id="events-list">
+        <li>🌈 Harlem Street Fair — Today @ 1pm</li>
+        <li>🎤 Jazz in the Park — Tonight @ 7pm</li>
+        <li>🎆 Coney Island Fireworks — Friday @ 9pm</li>
+      </ul>
     </div>
 
-    <div class="activities" id="activityList">
-      <!-- Activity Cards Injected by JS -->
+    <!-- Mini-Games -->
+    <div id="games">
+      <h2>Mini-Games 🎮</h2>
+      <button onclick="spinWheel()">🎡 Spin the Activity Wheel</button>
+      <button onclick="thisOrThat()">🤔 This or That</button>
+      <div id="game-result"></div>
     </div>
+  </div>
 
-    <!-- Mini Games -->
-    <div class="games">
-      <button onclick="startWheel()">🎡 Spin the Activity Wheel</button>
-      <button onclick="startThisOrThat()">⚡ This or That</button>
+  <!-- Savie Assistant -->
+  <div id="savie-button" onclick="toggleSavie()">🤖</div>
+  <div id="savie-chat" style="display:none;">
+    <div class="savie-header">Hi! I'm Savie 💬</div>
+    <div class="savie-messages">
+      <p>Try asking: “What’s something fun to do in Brooklyn?”</p>
+      <p>Or: “Free events near me?”</p>
     </div>
-
-    <!-- Weather Display -->
-    <div class="weather" id="weather">🌤️ Loading NYC weather...</div>
-
-    <!-- AI Assistant -->
-    <div class="assistant" title="Hi, I'm Savie! Ask me anything."></div>
+    <input type="text" id="savie-input" placeholder="Ask me anything..." />
   </div>
 
   <script src="script.js"></script>
